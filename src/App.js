@@ -1,18 +1,15 @@
 // 根组件 
 // APP -> INDEX.JS -> index.html -> root
-import { useState } from "react";
+import "./index.css";
+import CommentList from "./pages/comment-list.js";
+let number = 0;
 function App() {
-  // 定义一个状态和一个修改状态的函数
-  const [count,setCount] = useState(0);
-  const addCount = () => {
-    // 修改状态的值,重新渲染组件,数据驱动视图
-    setCount((pre)=>pre + 1);
-  };
+  number++;
+  console.log(`组件渲染第${number}次`)
   return (
     <div className="App">
-      <p>this is a react project</p>
-      <p>{count}</p>
-      <button onClick={addCount}>增加</button>
+      <p style={{color:'red',fontSize:'32px'}}>this is a react project</p>
+      <CommentList />
     </div>
   );
 }
