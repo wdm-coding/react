@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useRef } from "react";
 const userId = 4
 const commentItemStyle = {
   display:'flex',
@@ -6,6 +6,16 @@ const commentItemStyle = {
   marginBottom:'15px',
   borderBottom:'1px solid #999',
   padding:'15px'
+}
+const sendBtnStyle={
+  width:'90px',
+  height:'25px',
+  backgroundColor:'blue',
+  color:'#fff',
+  textAlign:'center',
+  lineHeight:'25px',
+  display:'inline-block',
+  cursor:'pointer'
 }
 const initCommentList = [
   {id:1, name:"张三", content:"今天整不出1", time:"2025-02-25 12:00", like:100,creatTiem:2},
@@ -37,9 +47,27 @@ function CommentList(){
       setCommentList(hotCommentList)
     }
   }
+  const inputRef = useRef(null)
+  const sendComment = ()=>{
+    const content = inputRef.current.value
+    if(content.trim()){
+      const newComment = {
+        id:commentList.length + 1,
+        name:'匿名用户',
+        content,
+        time:new Date().toLocaleString(),
+        like:0,
+        creatTiem:Date.now()
+      }
+      setCommentList([...commentList,newComment])
+      inputRef.current.value = ''
+      inputRef.current.focus()
+    }
+  }
   return (
     <div className="comment_list_wrap">
       <div style={{display:'flex',alignItems:'center',marginLeft:'15px'}}>
+      <p style={{marginRight:'15px'}}>评论:<span>{commentList.length}</span></p>
         {tabs.map(tab=>(
           <div 
             key={tab.value} 
@@ -53,6 +81,12 @@ function CommentList(){
             }}>{tab.name}</span>
           </div>
         ))}
+      </div>
+      <div style={{display:'flex',alignItems:'center'}}>
+        <input type="text" placeholder="请输入" ref={inputRef}/>
+        <div style={sendBtnStyle} onClick={sendComment}>
+          发布
+        </div>
       </div>
       <div style={{width:'100%'}}>
         {commentList.map(item=>
