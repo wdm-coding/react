@@ -6,11 +6,9 @@ import ContralBindInput from "./pages/contral-bind-input.js";
 import GetDom from "./pages/get-dom.js";
 import Father from "./pages/fatherSon/father.js";
 import WrapApp from "./pages/fatherSon/wrap-app.js";
-let number = 0;
-const compName = "WrapApp";
+import UseEffectHook from "./pages/hooks/useEffect-hook.js";
+const compName = "UseEffectHook";
 function App() {
-  number++;
-  console.log(`组件渲染第${number}次`)
   return (
     <div className="App">
       <p style={{color:'red',fontSize:'32px'}}>React</p>
@@ -20,7 +18,8 @@ function App() {
           ContralBindInput:<ContralBindInput />,
           GetDom:<GetDom />,
           Father:<Father />,
-          WrapApp:<WrapApp />
+          WrapApp:<WrapApp />,
+          UseEffectHook:<UseEffectHook />
         }[compName]
       }
     </div>
