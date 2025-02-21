@@ -9,6 +9,9 @@ function ChildOne(props){
       <p>{props.jsx}</p>
       <p>{props.children}</p>
       <button onClick={()=>props.onGetSonMsg('来自子组件的数据')}>向父组件发送数据</button>
+      <br/>
+      <br/>
+      <button onClick={()=>props.onGetbranth('来着兄弟组件的数据')}>向兄弟组件发送数据</button>
     </div>
   )
 }

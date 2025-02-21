@@ -5,8 +5,9 @@ import CommentList from "./pages/comment-list.js";
 import ContralBindInput from "./pages/contral-bind-input.js";
 import GetDom from "./pages/get-dom.js";
 import Father from "./pages/fatherSon/father.js";
+import WrapApp from "./pages/fatherSon/wrap-app.js";
 let number = 0;
-const compName = "Father";
+const compName = "WrapApp";
 function App() {
   number++;
   console.log(`组件渲染第${number}次`)
@@ -18,7 +19,8 @@ function App() {
           CommentList:<CommentList />,
           ContralBindInput:<ContralBindInput />,
           GetDom:<GetDom />,
-          Father:<Father />
+          Father:<Father />,
+          WrapApp:<WrapApp />
         }[compName]
       }
     </div>
