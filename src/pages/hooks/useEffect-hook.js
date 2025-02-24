@@ -23,6 +23,17 @@ function UseEffectHook(){
       count3++
       console.log(`useEffect依赖项为list执行${count3}次`)
     },[list])
+    // 4.useEffect清除副作用，相当于组件卸载时执行
+    useEffect(()=>{
+      const timer =  setInterval(()=>{
+        console.log('定时器执行中')
+      },1000)
+      return ()=>{
+        clearInterval(timer)
+        console.log('组件卸载')
+      }
+    },[])
+
     const handleClick = ()=>{
         // setList执行多次，组件会重新渲染多次
         setList([...list,1])
