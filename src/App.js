@@ -9,12 +9,9 @@ import Father from "./pages/fatherSon/father.js";
 import WrapApp from "./pages/fatherSon/wrap-app.js";
 import UseEffectHook from "./pages/hooks/useEffect-hook.js";
 import useToggle from "./pages/hooks/useToggle.js";
+import GetAxiosData from "./pages/get-axios-data.js";
 function App() {
-  const [compName] = useState('UseEffectHook')
-  // const [show,setShow] = useState(true)
-  // const toggle = ()=>{
-  //   setShow(!show)
-  // }
+  const [compName] = useState('GetAxiosData')
   const {show,toggle} = useToggle()
   return (
     <div className="App">
@@ -26,10 +23,11 @@ function App() {
           GetDom:<GetDom />,
           Father:<Father />,
           WrapApp:<WrapApp />,
-          UseEffectHook:<UseEffectHook />
+          UseEffectHook:<UseEffectHook />,
+          GetAxiosData:<GetAxiosData />
         }[compName]
       }
-      <button onClick={toggle}>切换</button>
+      <button style={{position:"fixed",bottom:'30px'}} onClick={toggle}>切换</button>
     </div>
   );
 }
