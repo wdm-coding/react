@@ -11,7 +11,7 @@ import UseEffectHook from "./pages/hooks/useEffect-hook.js";
 import useToggle from "./pages/hooks/useToggle.js";
 import GetAxiosData from "./pages/get-axios-data.js";
 function App() {
-  const [compName] = useState('GetAxiosData')
+  const [compName] = useState('CommentList')
   const {show,toggle} = useToggle()
   return (
     <div className="App">
