@@ -1,6 +1,6 @@
 import useGetList from "./hooks/useGetList.js"
 function GetAxiosData(){
-  const [list, setList] = useGetList('comment')
+  const [list] = useGetList('comment')
   return (
       <div>
         <p>GetAxiosData</p>
