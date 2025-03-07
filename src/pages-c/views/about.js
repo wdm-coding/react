@@ -1,8 +1,8 @@
-
+import './index.scss'
 function About(){
     return (
-      <div>
-        <h3>About</h3>
+      <div className="about_wrap">
+        <div className="inner_wrap">About</div>
       </div>
     );
 }
