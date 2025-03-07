@@ -3,6 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 const userStore = createSlice({
     name: "user", // 切片名称，唯一标识
     initialState: { // 初始状态
+      token:null,
       userInfo: {
         name: "xxx",
         age: 18,
