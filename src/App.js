@@ -4,17 +4,19 @@ import { useState } from "react";
 import PagesA from './pages-a/PagesA.js'
 import PagesB from './pages-b/PagesB.js'
 import PagesC from './pages-c/PagesC.js'
+import AdminApp from './admin-page/AdminApp.js'
+import './index.scss'
 // pages-a-APP
 function App() {
-  const [compName] = useState('PagesC')
+  const [compName] = useState('AdminApp')
   return (
     <div className="App">
-      <p style={{color:'red',fontSize:'42px'}}>React</p>
       {
         {
           PagesA:<PagesA />,
           PagesB:<PagesB />,
           PagesC:<PagesC />,
+          AdminApp:<AdminApp />
         }[compName]
       }
     </div>
