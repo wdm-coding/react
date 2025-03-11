@@ -6,6 +6,7 @@ import Home from '../pages-c/views/home.js';
 import User from '../pages-c/views/user.js';
 import About from '@/pages-c/views/about.js';
 import Login from '../pages-c/views/login.js';
+import Antd from '../pages-c/views/antd.js';
 const router = createBrowserRouter([
     {
       path: '/',
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
       children:[
         {element: <About />,index: true},
         {path: '/home', element: <Home />},
+        {path: '/antd', element: <Antd />},
         {path: '/user/:id', element: <User />},
       ]
     },
