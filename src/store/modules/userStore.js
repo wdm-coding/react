@@ -11,14 +11,17 @@ const userStore = createSlice({
       },
     },
     reducers:{ // 同步操作函数集合，每个方法对应一个action类型
+      SetToken:(state,action)=>{
+          state.token = action.payload;
+      },
       SetUserInfo:(state,action)=>{
           state.userInfo = action.payload;
       }
     }
 })
 // 2.从slice对象中导出action创建函数和reducer函数
-const {SetUserInfo} = userStore.actions;
+const {SetUserInfo,SetToken} = userStore.actions;
 const userReducer = userStore.reducer;
 // 3.导出action创建函数和reducer函数
-export {SetUserInfo};
+export {SetUserInfo,SetToken};
 export default userReducer;

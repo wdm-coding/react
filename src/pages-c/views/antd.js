@@ -1,4 +1,4 @@
-import { Button, ConfigProvider, Flex } from 'antd';
+import { Button, Flex } from 'antd';
 function Antd(){
     return (
       <div className="antd_wrap">
