@@ -1,24 +1,31 @@
-import { Card, Form, Input, Button } from "antd"
+import { Card, Form, Input, Button,message } from "antd"
 import "./index.scss"
-import { useState } from "react"
-import {SetToken} from '@/store/modules/userStore.js'
+import { useEffect, useState } from "react"
+import {userLogin} from '@/store/modules/userStore.js'
 import {useDispatch} from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 function Login() {
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(false)
-    const onFinish = (values) => {
-        console.log("Received values of form: ", values)
+    const [loginSucesss, setLoginSucesss] = useState(false)
+    const onFinish = async (values) => {
         setLoading(true)
         setTimeout(() => {
-            dispatch(SetToken(`token_${values.phone}_${values.password}`))
+            dispatch(userLogin({...values}))
             setLoading(false)
-            navigate('/layout')
+            setLoginSucesss(true)
+            navigate('/')
         }, 2000)
     }
-
+    useEffect(()=>{
+        if(loginSucesss) {
+            message.success('登录成功');
+            setLoginSucesss(false)
+        }
+    },[loginSucesss])
     const onFinishFailed = (errorInfo) => {
+        // 输出错误信息
         console.log("Failed:", errorInfo)
     }
 	return (
