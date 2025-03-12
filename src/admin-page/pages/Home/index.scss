@@ -1,0 +1,24 @@
+.login_wrap{
+  width: 100vw;
+  height: 100vh;
+  background: url('~@/assets/images/login-bg.png') no-repeat center / cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // 样式穿透
+  .ant-card-head-title{
+    text-align: center !important;
+  }
+  .ant-form{
+    margin: 0 auto !important;
+  }
+  .ant-card-body{
+    padding: 20px 0 !important;
+  }
+  .ant-input{
+    line-height: 2;
+  }
+  :where(.css-dev-only-do-not-override-240cud).ant-form-large .ant-form-item .ant-form-item-control-input{
+    min-height: 50px;
+  }
+}
