@@ -25,12 +25,12 @@ const userStore = createSlice({
 // 异步登录操作函数，获取token
 const userLogin = (params)=>{
     return (dispatch)=>{
-        setTimeout(()=>{
-            // 模拟登录成功，获取token
-            const {phone,password} = params
-            const token = `Login_Token_${phone}_${password}`;
-            dispatch(SetToken(token));
-        },1000);
+        return new Promise((resolve)=>{
+            setTimeout(()=>{
+                dispatch(SetToken(`Token-${params.phone}`))
+                resolve()
+            },3000)
+        })
     }
 }
 // 2.从slice对象中导出action创建函数和reducer函数

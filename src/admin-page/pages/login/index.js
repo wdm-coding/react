@@ -1,22 +1,38 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Card, Form, Input, Button,message } from "antd"
 import "./index.scss"
 import { useEffect, useState } from "react"
 import {userLogin} from '@/store/modules/userStore.js'
 import {useDispatch} from 'react-redux'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
+import useRouteHistory from '@/hooks/useHistory'
+import {getItem} from '@/utils'
 function Login() {
+    const { getPreviousPath } = useRouteHistory();
+    const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(false)
     const [loginSucesss, setLoginSucesss] = useState(false)
+     // 检测登录状态
+     useEffect(() => {
+        const token = getItem('token');
+        if (token) {
+            // 从state中获取原始路径，没有则回首页
+            const from = getPreviousPath()
+            console.log('from',from);
+            navigate(from, { replace: true });
+        }
+    }, []);
     const onFinish = async (values) => {
         setLoading(true)
-        setTimeout(() => {
-            dispatch(userLogin({...values}))
+        dispatch(userLogin({...values})).then(()=>{
             setLoading(false)
             setLoginSucesss(true)
-            navigate('/')
-        }, 2000)
+            const from = location.state?.from?.pathname || '/';
+            navigate(from, { replace: true });
+        })
+        
     }
     useEffect(()=>{
         if(loginSucesss) {
@@ -24,10 +40,6 @@ function Login() {
             setLoginSucesss(false)
         }
     },[loginSucesss])
-    const onFinishFailed = (errorInfo) => {
-        // 输出错误信息
-        console.log("Failed:", errorInfo)
-    }
 	return (
 		<div className="login_wrap">
 			<Card 
@@ -43,7 +55,6 @@ function Login() {
 					style={{width: '90%'}}
 					initialValues={{remember: true}}
 					onFinish={onFinish}
-					onFinishFailed={onFinishFailed}
 					autoComplete="off"
                     size="large"
                     validateTrigger={['onBlur','onChange']}
