@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 const { useEffect,useState } = require("react");
 function useGetList(url){

@@ -1,6 +1,7 @@
 const BASE_KEY = 'REACT_APP_'
 export const StorageKeys = {
-	token: BASE_KEY + '_TOKEN' // loginType
+	token: BASE_KEY + '_TOKEN', // token
+	userInfo: BASE_KEY + '_USER_INFO', // 用户信息
 }
 // 1.sessionStorage存储
 export function setItem (key, data) {

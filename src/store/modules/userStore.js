@@ -5,11 +5,7 @@ const userStore = createSlice({
     name: "user", // 切片名称，唯一标识
     initialState: { // 初始状态
       token:getItem("token") || null,
-      userInfo: {
-        name: "xxx",
-        age: 18,
-        gender: "男"
-      },
+      userInfo: getItem("userInfo") || null,
     },
     reducers:{ // 同步操作函数集合，每个方法对应一个action类型
       SetToken:(state,action)=>{
@@ -17,6 +13,7 @@ const userStore = createSlice({
         state.token = action.payload;
       },
       SetUserInfo:(state,action)=>{
+        setItem("userInfo",action.payload)
         state.userInfo = action.payload;
       }
     }
