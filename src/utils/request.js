@@ -26,7 +26,35 @@ service.interceptors.request.use(
 
 // 响应拦截器
 service.interceptors.response.use(
-  response => response,
+  response =>{
+    const status = response.status
+    if (status === 200) {
+      const {code,msg} = response.data
+      if(code === 0){
+        return response.data
+      }else{
+        // 错误处理
+        return Promise.reject(msg)
+      }
+    }
+    if(status === 401) {
+      // 处理token失效问题,重新登录等操作
+      return Promise.reject('未授权，请登录')
+    }
+    if(status === 403) {
+      // 没有权限
+      return Promise.reject('没有权限')
+    }
+    if(status === 404) {
+      // 请求地址出错
+      return Promise.reject('网络异常')
+    }
+    if(status === 500) {
+      // 服务器内部错误
+      return Promise.reject('服务器异常')
+    }
+    return Promise.reject('未知异常')
+  },
   error => {
     return Promise.reject(error)
   }
