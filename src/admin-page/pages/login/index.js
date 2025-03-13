@@ -2,7 +2,7 @@
 import { Card, Form, Input, Button,message } from "antd"
 import "./index.scss"
 import { useEffect, useState } from "react"
-import {userLogin} from '@/store/modules/userStore.js'
+import {userLogin,getUserInfo} from '@/store/modules/userStore.js'
 import {useDispatch} from 'react-redux'
 import { useNavigate,useLocation } from 'react-router-dom';
 import useRouteHistory from '@/hooks/useHistory'
@@ -27,12 +27,13 @@ function Login() {
     const onFinish = async (values) => {
         setLoading(true)
         dispatch(userLogin({...values})).then(()=>{
-            setLoading(false)
-            setLoginSucesss(true)
-            const from = location.state?.from?.pathname || '/';
-            navigate(from, { replace: true });
+            dispatch(getUserInfo(values.phone)).then(()=>{
+                setLoading(false)
+                setLoginSucesss(true)
+                const from = location.state?.from?.pathname || '/';
+                navigate(from, { replace: true });
+            })
         })
-        
     }
     useEffect(()=>{
         if(loginSucesss) {

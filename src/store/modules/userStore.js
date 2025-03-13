@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {setItem,getItem} from '@/utils'
+import {setItem,getItem,clearCache} from '@/utils'
 // 1.创建slice对象
 const userStore = createSlice({
     name: "user", // 切片名称，唯一标识
@@ -15,6 +15,11 @@ const userStore = createSlice({
       SetUserInfo:(state,action)=>{
         setItem("userInfo",action.payload)
         state.userInfo = action.payload;
+      },
+      LayoutOut:(state)=>{
+        clearCache()
+        state.token = null
+        state.userInfo = null
       }
     }
 })
@@ -26,13 +31,25 @@ const userLogin = (params)=>{
             setTimeout(()=>{
                 dispatch(SetToken(`Token-${params.phone}`))
                 resolve()
-            },3000)
+            },1000)
         })
     }
 }
+// 获取用户信息
+const getUserInfo = (phone)=>{
+  return dispatch=>{
+    return new Promise(resolve=>{
+      setTimeout(()=>{
+        dispatch(SetUserInfo({name:"张三",phone,avator:'https://img2.baidu.com/it/u=797128434,3616502808&fm=253&app=53&size=f60,60&n=0&g=0n&f=jpeg&fmt=auto?sec=1744446333&t=821fbae2142674b2acffe74c5cbe1f26'}))
+        resolve()
+      },1000)
+    })
+  }
+}
+
 // 2.从slice对象中导出action创建函数和reducer函数
-const {SetUserInfo,SetToken} = userStore.actions;
+const {SetUserInfo,SetToken,LayoutOut} = userStore.actions;
 const userReducer = userStore.reducer;
 // 3.导出action创建函数和reducer函数
-export {SetUserInfo,SetToken,userLogin};
+export {SetUserInfo,SetToken,userLogin,getUserInfo,LayoutOut};
 export default userReducer;

@@ -1,15 +1,24 @@
-import { Button, Layout, Menu, theme } from "antd"
+import { Button, Layout, Menu, theme,Avatar,Popconfirm,message } from "antd"
 import {useState} from "react"
-import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, VideoCameraOutlined,LoginOutlined } from '@ant-design/icons';
 import "./index.scss"
 import classnames from 'classnames';
 import {Outlet,useLocation,useNavigate} from 'react-router-dom'
+import { useSelector,useDispatch } from "react-redux";
+import {LayoutOut} from '@/store/modules/userStore'
 const { Header, Sider, Content } = Layout;
 function LayoutComp() {
+	const {userInfo} = useSelector(state=>state.user)
 	const naivate = useNavigate()
 	const locarion = useLocation()
 	const [collapsed, setCollapsed] = useState(false)
   const {token: { colorBgContainer, borderRadiusLG }} = theme.useToken();
+	const dispatch = useDispatch()
+	const confirm = () => {
+		dispatch(LayoutOut())
+		naivate('/login', { replace: true })
+		message.success('退出成功!');
+	};
 	return (
 		<div className="layout_wrap">
 			<Layout style={{width:'100%',height:'100%'}}>
@@ -56,6 +65,19 @@ function LayoutComp() {
 								height: 64,
 							}}
 						/>
+						<div style={{float:'right',marginRight:'20px',display:'flex',alignItems:'center'}}>
+							<span style={{marginRight:'10px'}}>欢迎您，{userInfo.name}</span>
+							<Avatar src={userInfo.avator} size='large' style={{margin:'0 15px'}}/>
+							<Popconfirm
+								title="注意"
+								description="你确定要退出吗？"
+								onConfirm={confirm}
+								okText="确定"
+								cancelText="取消"
+							>
+								<LoginOutlined style={{fontSize:'32px',cursor:'pointer'}}/>
+							</Popconfirm>
+						</div>
 					</Header>
 					<Content
 						style={{
