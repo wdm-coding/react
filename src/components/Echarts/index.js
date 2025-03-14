@@ -1,7 +1,7 @@
 import * as echarts from  'echarts';
 import { useEffect,useRef,useImperativeHandle  } from 'react';
-function EchartContainer(props,ref) {
-  const { option, className, style } = props;
+function EchartContainer(props) {
+  const { option, className, style,ref } = props;
   const myChart = useRef(null);
   const domRef = useRef(null);
   // 暴露方法，用于外部调用更新图表配置
@@ -9,12 +9,14 @@ function EchartContainer(props,ref) {
   useImperativeHandle(ref, () => ({
     // 获取 ECharts 实例
     getInstance: () => myChart.current,
-    // 手动触发 resize
-    resize: () => {
+    // 重新渲染图表配置
+    resetChart: () => {
       if (myChart.current) {
-        myChart.current.resize();
+        myChart.current.dispose(); // 销毁旧实例
+        myChart.current = echarts.init(domRef.current); // 创建新实例
+        myChart.current.setOption(option);
       }
-    }
+    },
   }));
 
   // 初始化图表实例
