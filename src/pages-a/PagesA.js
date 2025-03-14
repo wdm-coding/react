@@ -10,8 +10,11 @@ import useToggle from "./hooks/useToggle.js";
 import GetAxiosData from "./get-axios-data.js";
 import UseReducerHook from "./hooks/useReducer-hook.js";
 import UseMemoHook from "./hooks/useMemo-hook.js";
+import ReactMemo from "./hooks/reactMemo.js";
+import UseCallbackHook from "./hooks/useCallback-hook.js";
+import ForwordRefHoc from "./hooks/forwordRefHoc.js";
 function PagesA(){
-  const [compName] = useState('UseMemoHook')
+  const [compName] = useState('ForwordRefHoc')
   const {show,toggle} = useToggle()
   return (
     <div className="PagesA">
@@ -26,7 +29,11 @@ function PagesA(){
           UseEffectHook:<UseEffectHook />,
           GetAxiosData:<GetAxiosData />,
           UseReducerHook:<UseReducerHook />,
-          UseMemoHook:<UseMemoHook />
+          UseMemoHook:<UseMemoHook />,
+          ReactMemo:<ReactMemo />,
+          UseCallbackHook:<UseCallbackHook />,
+          ForwordRefHoc:<ForwordRefHoc />,
+          default:null
         }[compName]
       }
       <button style={{position:"fixed",bottom:'30px'}} onClick={toggle}>切换</button>
