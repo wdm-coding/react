@@ -3,9 +3,10 @@ import NotFound from '../pages-c/NotFound.js';
 import Login from '@/admin-page/pages/Login/index.js';
 import Layout from '@/admin-page/Layout/index.js'
 import AuthRoute from '@/components/AuthRoute.js'
-import Home from '@/admin-page/pages/Home/index.js';
-import List from '@/admin-page/pages/List/index.js';
-import EchartShow from '@/admin-page/pages/EchartShow/index.js'
+import { lazy,Suspense} from 'react';
+const Home = lazy(() => import('@/admin-page/pages/Home/index.js'))
+const List = lazy(() => import('@/admin-page/pages/List/index.js'))
+const EchartShow = lazy(() => import('@/admin-page/pages/EchartShow/index.js'))
 const router = createBrowserRouter([
     {
       path: '/',
@@ -13,15 +14,15 @@ const router = createBrowserRouter([
       children: [
         {
           index: true,
-          element:<Home></Home>
+          element: <Suspense fallback={'加载中'}><Home /></Suspense>,
         },
         {
           path: '/list',
-          element:<List></List>
+          element:<Suspense fallback={'加载中'}><List /></Suspense>,
         },
         {
           path: '/echarts',
-          element:<EchartShow></EchartShow>
+          element:<Suspense fallback={'加载中'}><EchartShow /></Suspense>,
         }
       ]
     },
