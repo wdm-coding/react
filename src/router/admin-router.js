@@ -5,6 +5,7 @@ import Layout from '@/admin-page/Layout/index.js'
 import AuthRoute from '@/components/AuthRoute.js'
 import Home from '@/admin-page/pages/Home/index.js';
 import List from '@/admin-page/pages/List/index.js';
+import EchartShow from '@/admin-page/pages/EchartShow/index.js'
 const router = createBrowserRouter([
     {
       path: '/',
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
         {
           path: '/list',
           element:<List></List>
+        },
+        {
+          path: '/echarts',
+          element:<EchartShow></EchartShow>
         }
       ]
     },

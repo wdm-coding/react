@@ -1,6 +1,6 @@
 import { Button, Layout, Menu, theme,Avatar,Popconfirm,message } from "antd"
 import {useState} from "react"
-import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, VideoCameraOutlined,LoginOutlined } from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, VideoCameraOutlined,LoginOutlined,TableOutlined } from '@ant-design/icons';
 import "./index.scss"
 import classnames from 'classnames';
 import {Outlet,useLocation,useNavigate} from 'react-router-dom'
@@ -41,6 +41,11 @@ function LayoutComp() {
 								key: "/list",
 								icon: <VideoCameraOutlined />,
 								label: "列表",
+							},
+							{
+								key: "/echarts",
+								icon: <TableOutlined />,
+								label: "Echarts图表",
 							}
 						]}
 						onClick={({key})=>{
