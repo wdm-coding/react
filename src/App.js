@@ -8,7 +8,7 @@ import AdminApp from './admin-page/AdminApp.js'
 import './index.scss'
 // pages-a-APP
 function App() {
-  const [compName] = useState('AdminApp')
+  const [compName] = useState('PagesA')
   return (
     <div className="App">
       {

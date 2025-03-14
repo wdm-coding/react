@@ -8,8 +8,10 @@ import WrapApp from "./fatherSon/wrap-app.js";
 import UseEffectHook from "./hooks/useEffect-hook.js";
 import useToggle from "./hooks/useToggle.js";
 import GetAxiosData from "./get-axios-data.js";
+import UseReducerHook from "./hooks/useReducer-hook.js";
+import UseMemoHook from "./hooks/useMemo-hook.js";
 function PagesA(){
-  const [compName] = useState('CommentList')
+  const [compName] = useState('UseMemoHook')
   const {show,toggle} = useToggle()
   return (
     <div className="PagesA">
@@ -22,7 +24,9 @@ function PagesA(){
           Father:<Father />,
           WrapApp:<WrapApp />,
           UseEffectHook:<UseEffectHook />,
-          GetAxiosData:<GetAxiosData />
+          GetAxiosData:<GetAxiosData />,
+          UseReducerHook:<UseReducerHook />,
+          UseMemoHook:<UseMemoHook />
         }[compName]
       }
       <button style={{position:"fixed",bottom:'30px'}} onClick={toggle}>切换</button>
