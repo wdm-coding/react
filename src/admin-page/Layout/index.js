@@ -72,7 +72,7 @@ function LayoutComp() {
 						/>
 						<div style={{float:'right',marginRight:'20px',display:'flex',alignItems:'center'}}>
 							<span style={{marginRight:'10px'}}>欢迎您，{userInfo.name}</span>
-							<Avatar src={userInfo.avator} size='large' style={{margin:'0 15px'}}/>
+							<Avatar src={userInfo.avator} size='large' style={{margin:'0 85px 0 15px'}}/>
 							<Popconfirm
 								title="注意"
 								description="你确定要退出吗？"
@@ -80,7 +80,10 @@ function LayoutComp() {
 								okText="确定"
 								cancelText="取消"
 							>
-								<LoginOutlined style={{fontSize:'32px',cursor:'pointer'}}/>
+								<div style={{display:'flex',alignItems:'center'}}>
+									<LoginOutlined style={{fontSize:'26px',cursor:'pointer'}}/>
+									<span style={{paddingLeft:'10px'}}>退出</span>
+								</div>
 							</Popconfirm>
 						</div>
 					</Header>
