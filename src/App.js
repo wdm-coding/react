@@ -1,22 +1,24 @@
 // 根组件 
 // APP -> INDEX.JS -> index.html -> root
 import { useState } from "react";
-import PagesA from './pages-a/PagesA.js'
-import PagesB from './pages-b/PagesB.js'
-import PagesC from './pages-c/PagesC.js'
-import AdminApp from './admin-page/AdminApp.js'
+import PagesBase from './pages-base/index.js'
+import PagesRedux from './pages-redux/index.js'
+import PagesRouter from './pages-router/index.js'
+import PagesClass from './pages-class/index.js'
+import AdminApp from './admin-page/index.js'
 import './index.scss'
 // pages-a-APP
 function App() {
-  const [compName] = useState('PagesA')
+  const [compName] = useState('PagesClass')
   return (
     <div className="App">
       {
         {
-          PagesA:<PagesA />,
-          PagesB:<PagesB />,
-          PagesC:<PagesC />,
-          AdminApp:<AdminApp />
+          PagesBase:<PagesBase />,
+          PagesRedux:<PagesRedux />,
+          PagesRouter:<PagesRouter />,
+          AdminApp:<AdminApp />,
+          PagesClass:<PagesClass />
         }[compName]
       }
     </div>

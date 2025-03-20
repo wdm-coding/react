@@ -1,12 +1,12 @@
 import {createBrowserRouter} from 'react-router-dom';
 
-import AuthGuard from '../pages-c/AuthGuard.js';
-import NotFound from '../pages-c/NotFound.js';
-import Home from '../pages-c/views/home.js';
-import User from '../pages-c/views/user.js';
-import About from '@/pages-c/views/about.js';
-import Login from '../pages-c/views/login.js';
-import Antd from '../pages-c/views/antd.js';
+import AuthGuard from '@/pages-router/AuthGuard.js';
+import NotFound from '@/pages-router/NotFound.js';
+import Home from '@/pages-router/views/home.js';
+import User from '@/pages-router/views/user.js';
+import About from '@/pages-router/views/about.js';
+import Login from '@/pages-router/views/login.js';
+import Antd from '@/pages-router/views/antd.js';
 const router = createBrowserRouter([
     {
       path: '/',

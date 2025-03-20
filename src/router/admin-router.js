@@ -1,5 +1,5 @@
 import {createBrowserRouter} from 'react-router-dom';
-import NotFound from '../pages-c/NotFound.js';
+import NotFound from '@/pages-router/NotFound.js';
 import Login from '@/admin-page/pages/Login/index.js';
 import Layout from '@/admin-page/Layout/index.js'
 import AuthRoute from '@/components/AuthRoute.js'
