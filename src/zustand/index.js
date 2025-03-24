@@ -11,8 +11,9 @@ const useStore = create(persist(
       }
   },
   {
-    name: 'my-storage', // 唯一名称
-    getStorage: () => createJSONStorage(() => sessionStorage), // (key) => ...
+    name: 'zustand', // 唯一名称
+    storage: createJSONStorage(() => sessionStorage), // 存储方式 localStorage | sessionStorage
+    partialize: (state) => ({ count: state.count,token:state.token }) // 持久化存储的字段
   }
 ))
 export default useStore;
